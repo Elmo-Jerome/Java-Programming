@@ -14,9 +14,14 @@ public class Graphics extends JPanel implements ActionListener {
     static final int TICK_SIZE = 50;
     static final int BOARD_SIZE = (WIDTH * HEIGHT) / (TICK_SIZE * TICK_SIZE);
 
+    final Font font = new Font("TimesRoman", Font.BOLD, 30);
+
     int[] snakePosX = new int[BOARD_SIZE];
     int[] snakePosY = new int[BOARD_SIZE];
     int snakeLength;
+
+    Food food;
+    int foodEaten;
 
     char direction = 'R';
     boolean isMoving = false;
@@ -52,6 +57,8 @@ public class Graphics extends JPanel implements ActionListener {
                             }
                             break;
                     }
+                }else {
+                    start();
                 }
             }
         });
@@ -63,8 +70,10 @@ public class Graphics extends JPanel implements ActionListener {
         snakePosX = new int[BOARD_SIZE];
         snakePosY = new int[BOARD_SIZE];
         snakeLength = 5;
+        foodEaten = 0;
         direction = 'R';
         isMoving = true;
+        spawnFood();
         timer.start();
     }
 
@@ -73,10 +82,18 @@ public class Graphics extends JPanel implements ActionListener {
         super.paintComponent(g);
 
         if(isMoving) {
+            g.setColor(Color.BLUE);
+            g.fillRect(food.getPosX(), food.getPosY(), TICK_SIZE, TICK_SIZE);
+
             g.setColor(Color.darkGray);
             for (int i = 0; i < snakeLength; i++) {
                 g.fillRect(snakePosX[i], snakePosY[i], TICK_SIZE, TICK_SIZE);
             }
+        } else {
+            String scoreText = String.format("Game Over! \r Score: %d ...Press any key to play again!", foodEaten);
+            g.setColor(Color.BLACK);
+            g.setFont(font);
+            g.drawString(scoreText, (WIDTH - getFontMetrics(g.getFont()).stringWidth(scoreText)) / 2, HEIGHT /2);
         }
     }
 
@@ -94,10 +111,41 @@ public class Graphics extends JPanel implements ActionListener {
         }
     }
 
+    protected void spawnFood() {
+        food = new Food();
+    }
+
+    protected void eatFood() {
+        if ((snakePosX[0] == food.getPosX()) && (snakePosY[0] == food.getPosY())) {
+            snakeLength++;
+            foodEaten++;
+            spawnFood();
+        }
+    }
+
+    protected void collisionTest() {
+        for (int i = snakeLength; i > 0; i--) {
+            if ((snakePosX[0] == snakePosX[i]) && (snakePosY[0] == snakePosY[i])) {
+                isMoving = false;
+                break;
+            }
+        }
+
+        if (snakePosX[0] < 0 || snakePosX[0] > WIDTH - TICK_SIZE || snakePosY[0] < 0 || snakePosY[0] > HEIGHT - TICK_SIZE) {
+            isMoving = false;
+        }
+
+        if (!isMoving) {
+            timer.stop();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (isMoving) {
             move();
+            collisionTest();
+            eatFood();
         }
 
         repaint();

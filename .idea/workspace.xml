@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c11671e-c60d-4e93-a3a6-8a013c8ec04b" name="Changes" comment="snake game">
+    <list default="true" id="7c11671e-c60d-4e93-a3a6-8a013c8ec04b" name="Changes" comment="Snake movements">
+      <change afterPath="$PROJECT_DIR$/src/Main/Food.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Graphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Graphics.java" afterDir="false" />
     </list>
@@ -72,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663308228557</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Snake movements">
+      <created>1663755409076</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1663755409076</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -91,6 +99,7 @@
     <MESSAGE value="Test" />
     <MESSAGE value="Snake game" />
     <MESSAGE value="snake game" />
-    <option name="LAST_COMMIT_MESSAGE" value="snake game" />
+    <MESSAGE value="Snake movements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Snake movements" />
   </component>
 </project>
