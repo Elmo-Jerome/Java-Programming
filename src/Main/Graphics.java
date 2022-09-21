@@ -11,7 +11,7 @@ public class Graphics extends JPanel implements ActionListener {
 
     static final int WIDTH = 800;
     static final int HEIGHT = 800;
-    static final int TICK_SIZE = 50;
+    static final int TICK_SIZE = 20;
     static final int BOARD_SIZE = (WIDTH * HEIGHT) / (TICK_SIZE * TICK_SIZE);
 
     final Font font = new Font("TimesRoman", Font.BOLD, 30);
